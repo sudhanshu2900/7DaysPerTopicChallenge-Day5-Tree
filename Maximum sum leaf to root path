@@ -1,0 +1,39 @@
+PROBLEM: Given a Binary Tree, find the maximum sum path from a leaf to root.
+
+Input:
+        1
+       / \
+      2   3 
+      
+Output: 4
+
+Explanation: Following the path 3 -> 1, results in a sum of 4, which is the maximum path sum from leaf to root for the given tree.
+
+
+SOLUTION:
+
+void findSum(Node* root, int &sum, int tempSum){
+    
+    if(root == NULL) return;
+    
+        
+    tempSum += root->data;
+    sum = max(sum, tempSum);
+        
+    findSum(root->left, sum, tempSum);
+    findSum(root->right, sum, tempSum);
+    
+    
+}
+
+int maxPathSum(Node* root)
+{
+    int sum = 0, tempSum = 0;
+    findSum(root, sum, tempSum);
+    return sum;
+}
+
+
+
+
+
